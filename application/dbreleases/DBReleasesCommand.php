@@ -44,11 +44,7 @@ class DBReleasesCommand extends Command {
     }
 
     $sConteudoArquivo = file_get_contents($sArquivo);
-
-    $sOutput  = "\n  $sArquivo\n";
-    $sOutput .= "\n  " . str_replace("\n", "\n  ", $sConteudoArquivo);
-
-    $oOutput->writeln($sOutput);
+    $oOutput->writeln("\n  " . str_replace("\n", "\n  ", $sConteudoArquivo));
   }
 
   private function editar($sArquivo) {

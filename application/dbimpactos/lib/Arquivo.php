@@ -67,10 +67,12 @@ class Arquivo {
       $this->aRequerido[] = $oDadosRequerido;
     }
 
-    $iMenu = $this->buscarMenu($iArquivo);
+    $aMenus = $this->buscarMenu($iArquivo);
 
-    if ( !empty($iMenu) ) {
-      $this->aMenus[$iMenu][] = $iArquivo;
+    if ( !empty($aMenus) ) {
+      foreach ($aMenus as $iMenu) {
+        $this->aMenus[$iMenu][] = $iArquivo;
+      }
     }
 
     $this->buscarMenuRecursivo($iArquivo);

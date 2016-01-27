@@ -262,7 +262,7 @@ class AddCommand extends Command {
     
           case "php":
 
-              $sMensagemValidacaoSintaxe = preg_replace("/(.*)( ". $sArquivo .")/m", "$1", exec("php -l ".$sArquivo));
+              $sMensagemValidacaoSintaxe = preg_replace("/(.*)( ". preg_quote($sArquivo, '/') .")/m", "$1", exec("php -l ".$sArquivo));
               if(strpos(strtolower($sMensagemValidacaoSintaxe), "no syntax errors")) {
                 $this->oOutput->writeln(sprintf($sMensagemArquivoInvalido, $sArquivo));
                 return false;

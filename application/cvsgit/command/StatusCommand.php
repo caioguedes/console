@@ -264,6 +264,23 @@ class StatusCommand extends Command {
      */
     $aArquivosIgnorar = array();
     $aIgnorar         = $this->getApplication()->getConfig('ignore');
+
+    /**
+     * Verifica arquivos ignorados no .csvignore do projeto
+     */
+    if ( file_exists('.cvsignore') ) {
+
+      $oArquivoCvsIgnore = new \SplFileObject('.cvsignore');
+
+      foreach ($oArquivoCvsIgnore as $iNumeroLinha => $sLinha) {
+
+        $sLinha = trim($sLinha);
+        if (!empty($sLinha) && !in_array($sLinha, $aIgnorar)) {
+          $aIgnorar[] = $sLinha;
+        }
+      }
+    }
+
     foreach ($aIgnorar as $sIgnore) {
 
       $sOperador = "*";
